@@ -5,7 +5,7 @@ public class Watson {
     public static void main(String[] args) {
         String botname = "Watson";
         Scanner scanner = new Scanner(System.in);
-        ArrayList<String> Stringlist = new ArrayList<String>(100);
+        ArrayList<Task> Tasklist = new ArrayList<Task>(100);
 
         System.out.println("Hello! I'm " + botname);
         System.out.println("What can I do for you?");
@@ -16,12 +16,27 @@ public class Watson {
                 break;
             }
             else if (command.equals("list")){
-                for(int i = 0; i < Stringlist.size(); i++){
-                    System.out.println(i+1 + ". " + Stringlist.get(i));
+                for(int i = 0; i < Tasklist.size(); i++){
+                    System.out.println(i+1 + ". " + Tasklist.get(i).getstatus() + " "
+                            + Tasklist.get(i));
+                }
+            }
+            else if (command.contains("mark")) {
+                String[] words = command.split(" ");
+                if (words.length == 2) {
+                    int temp = Integer.parseInt(words[1]) - 1;
+                    String feedback = Tasklist.get(temp).updatestatus(words[0]);
+                    System.out.println(feedback);
+                    System.out.println(Tasklist.get(temp).getstatus() + " "
+                            + Tasklist.get(temp));
+                }
+                else {
+                    Tasklist.add(new Task(command));
+                    System.out.println("added: " + command);
                 }
             }
             else {
-                Stringlist.add(command);
+                Tasklist.add(new Task(command));
                 System.out.println("added: " + command);
             }
         }
