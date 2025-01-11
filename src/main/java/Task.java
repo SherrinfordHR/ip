@@ -12,11 +12,11 @@ public class Task {
     }
 
     public String updatestatus(String command){
-        if (command.contains("unmark")) {
+        if (command.equals("unmark")) {
             this.status = false;
             return "OK, I've marked this task as not done yet:";
         }
-        else if (command.contains("mark")) {
+        else if (command.equals("mark")) {
             this.status = true;
             return "Nice! I've marked this task as done:";
         }

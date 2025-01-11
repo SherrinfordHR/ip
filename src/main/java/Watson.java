@@ -11,6 +11,7 @@ public class Watson {
         System.out.println("What can I do for you?");
         while(true) {
             String command = scanner.nextLine();
+            String[] words = command.split(" ");
             if (command.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
@@ -21,8 +22,7 @@ public class Watson {
                             + Tasklist.get(i));
                 }
             }
-            else if (command.contains("mark")) {
-                String[] words = command.split(" ");
+            else if (words[0].equals("mark") || words[0].equals("unmark")) {
                 if (words.length == 2) {
                     int temp = Integer.parseInt(words[1]) - 1;
                     String feedback = Tasklist.get(temp).updatestatus(words[0]);
