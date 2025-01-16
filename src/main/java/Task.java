@@ -1,6 +1,10 @@
+import java.util.Arrays;
+
 public class Task {
     protected String description;
     protected boolean status;
+
+    protected String date;
 
     public Task(String description){
         this.description = description;
@@ -25,6 +29,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return description;
+        return getstatus() + " " + description;
     }
 }
