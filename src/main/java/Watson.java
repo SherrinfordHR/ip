@@ -53,17 +53,20 @@ public class Watson {
                             + Tasklist.get(i).toString());
                 }
             }
-            else if (words[0].equals("mark") || words[0].equals("unmark")) {
-                if (words.length == 2) {
-                    int temp = Integer.parseInt(words[1]) - 1;
-                    String feedback = Tasklist.get(temp).updatestatus(words[0]);
-                    System.out.println(feedback);
-                    System.out.println(Tasklist.get(temp).getstatus() + " "
-                            + Tasklist.get(temp));
-                }
-                else {
-                    addtolist(command);
-                }
+            else if ((words[0].equals("mark") || words[0].equals("unmark")) && words.length == 2) {
+                int temp = Integer.parseInt(words[1]) - 1;
+                String feedback = Tasklist.get(temp).updatestatus(words[0]);
+                System.out.println(feedback);
+                System.out.println(Tasklist.get(temp).getstatus() + " "
+                        + Tasklist.get(temp));
+            }
+            else if (words[0].equals("delete") && words.length == 2) {
+                int index = Integer.parseInt((words[1])) - 1;
+                System.out.printf("Noted. I've removed this task:%n");
+                String feedback = Tasklist.get(index).toString();
+                System.out.println(feedback);
+                Tasklist.remove(index);
+                System.out.printf("Now you have %d tasks in the list.%n", Tasklist.size());
             }
             else {
                 addtolist(command);
