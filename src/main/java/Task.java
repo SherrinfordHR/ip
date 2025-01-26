@@ -1,11 +1,6 @@
-import java.util.Arrays;
-
 public class Task {
     protected String description;
     protected boolean status;
-
-    protected String date;
-
     public Task(String description){
         this.description = description;
         this.status = false;
@@ -13,6 +8,11 @@ public class Task {
 
     public String getstatus() {
         return status ? "[X]" : "[ ]";
+    }
+
+    public Task setstatus(String s) {
+        this.status = s.equals("1");
+        return null;
     }
 
     public String updatestatus(String command){
@@ -30,5 +30,9 @@ public class Task {
     @Override
     public String toString() {
         return getstatus() + " " + description;
+    }
+
+    public String tofile() {
+        return description;
     }
 }
