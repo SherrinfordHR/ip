@@ -1,7 +1,8 @@
+package Watson.task;
+
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class Events extends Task{
     private String from;
@@ -21,7 +22,7 @@ public class Events extends Task{
         }
         try {
             DateTimeFormatter formatter= DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
-            this.todate = LocalDateTime.parse(from, formatter);
+            this.todate = LocalDateTime.parse(to, formatter); // Changed from 'from' to 'to'
         } catch (DateTimeException e) {
             this.todate = null;
         }
