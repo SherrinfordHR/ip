@@ -1,16 +1,49 @@
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Events extends Task{
-    protected String from;
-    protected String to;
+    private String from;
+    private String to;
+    private LocalDateTime fromdate;
+    private LocalDateTime todate;
 
     public Events(String description, String from, String to){
         super(description);
         this.from = from;
         this.to = to;
+        try {
+            DateTimeFormatter formatter= DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+            this.fromdate = LocalDateTime.parse(from, formatter);
+        } catch (DateTimeException e) {
+            this.fromdate = null;
+        }
+        try {
+            DateTimeFormatter formatter= DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+            this.todate = LocalDateTime.parse(from, formatter);
+        } catch (DateTimeException e) {
+            this.todate = null;
+        }
     }
 
     @Override
     public String toString(){
-        return "[D]" + super.toString() + " (from: " + this.from + " to: " + this.to + ")";
+        String fromtoString;
+        String totoString;
+        if (fromdate != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
+            fromtoString = fromdate.format(formatter);
+        } else {
+            fromtoString = this.from;
+        }
+        if (todate != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
+            totoString = todate.format(formatter);
+        } else {
+            totoString = this.to;
+        }
+        return "[D]" + super.toString() + " (from: " + fromtoString + " to: " + totoString + ")";
     }
 
     @Override
