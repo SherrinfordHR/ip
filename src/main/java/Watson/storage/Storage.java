@@ -4,13 +4,25 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Manages persistent storage for tasks by reading from and writing to a file.
+ */
 public class Storage {
     private final String filepath;
 
+    /**
+     Constructs a Storage object with the specified file path.
+     @param filepath The path to the file used for data storage.
+     */
     public Storage(String filepath) {
         this.filepath = filepath;
     }
 
+    /**
+     Loads tasks from the storage file. Creates the file if it does not exist.
+     @return A list of tasks loaded from the file.
+     @throws IOException If an I/O error occurs while reading the file.
+     */
     public List<Task> load() throws IOException {
         List<Task> loadedTasks = new ArrayList<>();
         File file = new File(filepath);
@@ -31,6 +43,11 @@ public class Storage {
         return loadedTasks;
     }
 
+    /**
+     Parses a line from the storage file into a Task object.
+     @param line The line read from the file.
+     @return A Task object, or null if the line format is invalid.
+     */
     private Task parseLine(String line) {
         String[] parts = line.split(" \\| ");
         switch (parts[0]) {
@@ -59,6 +76,11 @@ public class Storage {
         return event;
     }
 
+    /**
+     Saves all tasks from the task list to the storage file.
+     @param tasks The task list to be saved.
+     @throws IOException If an I/O error occurs while writing to the file.
+     */
     public void savetask(TaskList tasks) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))) {
             for (Task task : tasks.getAll()) {
