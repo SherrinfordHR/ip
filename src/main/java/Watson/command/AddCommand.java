@@ -21,15 +21,15 @@ public class AddCommand implements Command {
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) throws WatsonException {
         switch (type) {
-            case "todo":
-                addTodo(tasks, ui);
-                break;
-            case "deadline":
-                addDeadline(tasks, ui);
-                break;
-            case "event":
-                addEvent(tasks, ui);
-                break;
+        case "todo":
+            addTodo(tasks, ui);
+            break;
+        case "deadline":
+            addDeadline(tasks, ui);
+            break;
+        case "event":
+            addEvent(tasks, ui);
+            break;
         }
     }
 

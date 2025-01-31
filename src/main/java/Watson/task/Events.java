@@ -4,24 +4,24 @@ import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Events extends Task{
+public class Events extends Task {
     private String from;
     private String to;
     private LocalDateTime fromdate;
     private LocalDateTime todate;
 
-    public Events(String description, String from, String to){
+    public Events(String description, String from, String to) {
         super(description);
         this.from = from;
         this.to = to;
         try {
-            DateTimeFormatter formatter= DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
             this.fromdate = LocalDateTime.parse(from, formatter);
         } catch (DateTimeException e) {
             this.fromdate = null;
         }
         try {
-            DateTimeFormatter formatter= DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
             this.todate = LocalDateTime.parse(to, formatter); // Changed from 'from' to 'to'
         } catch (DateTimeException e) {
             this.todate = null;
@@ -29,7 +29,7 @@ public class Events extends Task{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String fromtoString;
         String totoString;
         if (fromdate != null) {
