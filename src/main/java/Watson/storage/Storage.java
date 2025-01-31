@@ -1,5 +1,7 @@
 package Watson.storage;
+
 import Watson.task.*;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +36,14 @@ public class Storage {
     private Task parseLine(String line) {
         String[] parts = line.split(" \\| ");
         switch (parts[0]) {
-            case "T": return parseTodo(parts);
-            case "D": return parseDeadline(parts);
-            case "E": return parseEvent(parts);
-            default: return null;
+        case "T":
+            return parseTodo(parts);
+        case "D":
+            return parseDeadline(parts);
+        case "E":
+            return parseEvent(parts);
+        default:
+            return null;
         }
     }
 

@@ -3,7 +3,8 @@ package Watson.task;
 public class Task {
     private final String description;
     protected boolean status;
-    public Task(String description){
+
+    public Task(String description) {
         this.description = description;
         this.status = false;
     }
@@ -17,12 +18,11 @@ public class Task {
         return null;
     }
 
-    public String updatestatus(String command){
+    public String updatestatus(String command) {
         if (command.equals("unmark")) {
             this.status = false;
             return "OK, I've marked this task as not done yet:";
-        }
-        else if (command.equals("mark")) {
+        } else if (command.equals("mark")) {
             this.status = true;
             return "Nice! I've marked this task as done:";
         }
