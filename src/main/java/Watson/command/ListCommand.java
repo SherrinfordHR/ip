@@ -1,10 +1,11 @@
 package Watson.command;
+
 import Watson.task.TaskList;
 import Watson.storage.Storage;
 import Watson.ui.Ui;
+
 /**
  * Represents a command to display all tasks in the task list.
- * This command triggers the UI to show the current tasks.
  */
 public class ListCommand implements Command {
     /**

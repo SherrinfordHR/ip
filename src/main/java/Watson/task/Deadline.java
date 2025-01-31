@@ -5,25 +5,25 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- Represents a task with a deadline. Parses and stores the due date/time.
- Inherits from the Task class and adds functionality for deadline-specific operations.
+ * Represents a task with a specific deadline. Parses and stores the due date/time.
+ * Inherits from the Task class and supports deadline-specific formatting.
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
     private final String due;
     private LocalDateTime duedate;
 
     /**
-     Constructs a Deadline task with a description and due date string.
-     Attempts to parse the due date into a LocalDateTime object using "d/M/yyyy HHmm" format.
-     If parsing fails, the raw string is retained.
-     @param description The task description.
-     @param due         The due date string.
+     * Constructs a Deadline task with a description and due date string.
+     * Attempts to parse the due date using the "d/M/yyyy HHmm" format. Retains the raw string if parsing fails.
+     *
+     * @param description The task description.
+     * @param due The due date string (e.g., "2/12/2023 1800").
      */
-    public Deadline(String description, String due){
+    public Deadline(String description, String due) {
         super(description);
         this.due = due;
         try {
-            DateTimeFormatter formatter= DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
             this.duedate = LocalDateTime.parse(due, formatter);
         } catch (DateTimeException e) {
             this.duedate = null;
@@ -31,15 +31,15 @@ public class Deadline extends Task{
     }
 
     /**
-     Returns a formatted string representation of the task.
-     Uses "MMM dd yyyy, h:mm" format if the due date was parsed successfully.
-     Otherwise, uses the raw due string.
-     @return Formatted task string with deadline.
+     * Returns a formatted string for display. Uses "MMM dd yyyy, h:mm" if parsed successfully;
+     * otherwise, uses the raw due string.
+     *
+     * @return Formatted string (e.g., "[D] [X] Submit report (by: Dec 02 2023, 6:00 PM)").
      */
     @Override
-    public String toString(){
+    public String toString() {
         if (this.duedate != null) {
-            DateTimeFormatter formatter= DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
             String newdate = this.duedate.format(formatter);
             return "[D]" + super.toString() + " (by: " + newdate + ")";
         }
@@ -47,8 +47,9 @@ public class Deadline extends Task{
     }
 
     /**
-     Serializes the task for storage in a file.
-     @return A string in the format "D | [status] | [description] | [due]".
+     * Serializes the task for file storage in the format: "D | [status] | [description] | [due]".
+     *
+     * @return A string like "D | 1 | Submit report | 2/12/2023 1800".
      */
     @Override
     public String tofile() {
