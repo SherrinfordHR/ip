@@ -10,12 +10,22 @@ import Watson.ui.Ui;
 
 import java.io.IOException;
 
+/**
+ * Main class for the Watson task management application.
+ * Handles initialization, command execution loop, and graceful shutdown.
+ */
 public class Watson {
     private final Storage storage;
     private final TaskList Tasklist;
     private final Parser parser;
     private final Ui ui;
 
+    /**
+     * Constructs a Watson instance with the specified file path for storage.
+     * Initializes UI, storage, task list, and parser. Loads existing tasks from storage.
+     *
+     * @param filepath The path to the file used for storing tasks.
+     */
     public Watson(String filepath) {
         this.ui = new Ui();
         this.storage = new Storage(filepath);
@@ -24,6 +34,10 @@ public class Watson {
         loadtask();
     }
 
+    /**
+     * Loads tasks from the storage file into the task list.
+     * Displays an error message if loading fails.
+     */
     private void loadtask() {
         try {
             Tasklist.loadTasks(storage.load());
@@ -32,6 +46,10 @@ public class Watson {
         }
     }
 
+    /**
+     * Starts the Watson application.
+     * Displays welcome message, processes user commands until exit, and saves tasks after each command.
+     */
     public void run() {
         ui.showWelcome();
 

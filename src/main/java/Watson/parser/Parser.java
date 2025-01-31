@@ -3,7 +3,18 @@ package Watson.parser;
 import Watson.command.*;
 import Watson.exception.WatsonException;
 
+/**
+ * Parses user input into executable commands.
+ * Converts raw string commands to corresponding Command objects.
+ */
 public class Parser {
+    /**
+     * Parses a user input string and returns the appropriate command.
+     *
+     * @param command The raw user input string (case-insensitive).
+     * @return A Command object corresponding to the input.
+     * @throws WatsonException If the input command is unrecognized, incomplete, or improperly formatted.
+     */
     public static Command parse(String command) throws WatsonException {
         String[] parts = command.split(" ", 2);
         String action = parts[0].toLowerCase();
