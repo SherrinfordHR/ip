@@ -54,8 +54,8 @@ public class Watson {
         ui.showWelcome();
 
         while (true) {
-            String command = ui.readCommand();
             try {
+                String command = ui.readCommand();
                 Command cmd = parser.parse(command);
                 if (cmd instanceof ExitCommand) break;
                 cmd.execute(Tasklist, storage, ui);
