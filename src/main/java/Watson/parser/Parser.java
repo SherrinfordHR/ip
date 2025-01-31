@@ -22,6 +22,8 @@ public class Parser {
             case "deadline":
             case "event":
                 return new AddCommand(action, parts.length > 1 ? parts[1] : "");
+            case "find":
+                return new SearchCommand(parts[1]);
             default:
                 throw new WatsonException("OOPS!!! I don't know what that means.");
         }
