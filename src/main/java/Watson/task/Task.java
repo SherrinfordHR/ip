@@ -73,4 +73,8 @@ public class Task {
     public String tofile() {
         return description;
     }
+
+    public String getdescription() {
+        return description;
+    }
 }
