@@ -114,6 +114,11 @@ public class Ui {
         scanner.close();
     }
 
+    /**
+     * Prints a list of tasks.
+     *
+     * @param matchingTasks list of tasks to display.
+     */
     public void showTasks(List<Task> matchingTasks) {
         if (matchingTasks.isEmpty()){
             System.out.println("No match found.");

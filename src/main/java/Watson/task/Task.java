@@ -74,6 +74,11 @@ public class Task {
         return description;
     }
 
+    /**
+     * return the description of the task.
+     *
+     * @return The task description (e.g., "Read book").
+     */
     public String getdescription() {
         return description;
     }
