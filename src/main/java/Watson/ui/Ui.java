@@ -9,6 +9,7 @@ import java.util.Scanner;
  * Manages the command-line interface (CLI) for the Watson application.
  */
 public class Ui {
+    private String lastMessage = "";
     private final Scanner scanner;
 
     /**
@@ -48,10 +49,16 @@ public class Ui {
      * @param tasks The list of tasks to display.
      */
     public void showTaskList(List<Task> tasks) {
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < tasks.size(); i++) {
-            System.out.println((i + 1) + ". " + tasks.get(i));
+        if (tasks.isEmpty()) {
+            lastMessage = "There are no tasks in your list.";
+        } else {
+            StringBuilder sb = new StringBuilder("Here are the tasks in your list:\n");
+            for (int i = 0; i < tasks.size(); i++) {
+                sb.append((i + 1) + ". " + tasks.get(i) + "\n");
+            }
+            lastMessage = sb.toString();
         }
+        System.out.println(lastMessage); // 打印到控制台（可选）
     }
 
     /**
@@ -61,9 +68,8 @@ public class Ui {
      * @param totalTasks The new total number of tasks after addition.
      */
     public void showTaskAdded(Task task, int totalTasks) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + task);
-        System.out.printf("Now you have %d tasks in the list.%n", totalTasks);
+        lastMessage = "Got it. I've added this task:\n  " + task + "\nNow you have " + totalTasks + " tasks in the list.";
+        System.out.println(lastMessage);
     }
 
     /**
@@ -73,9 +79,8 @@ public class Ui {
      * @param totalTasks The new total number of tasks after removal.
      */
     public void showTaskRemoved(Task task, int totalTasks) {
-        System.out.println("Noted. I've removed this task:");
-        System.out.println("  " + task);
-        System.out.printf("Now you have %d tasks in the list.%n", totalTasks);
+        lastMessage = "Noted. I've removed this task:\n  " + task + "\nNow you have " + totalTasks + " tasks in the list.";
+        System.out.println(lastMessage);
     }
 
     /**
@@ -84,8 +89,8 @@ public class Ui {
      * @param task The task whose status was updated.
      */
     public void showMarkResult(Task task) {
-        System.out.println("Status updated:");
-        System.out.println("  " + task.getstatus() + " " + task);
+        lastMessage = "Status updated:\n  " + task.getstatus() + " " + task;
+        System.out.println(lastMessage);
     }
 
     /**
@@ -94,7 +99,8 @@ public class Ui {
      * @param message The error message to display.
      */
     public void showError(String message) {
-        System.out.println("Error: " + message);
+        lastMessage = "Error: " + message;
+        System.out.println(lastMessage);
     }
 
     /**
@@ -103,6 +109,7 @@ public class Ui {
      * @param message The message to display.
      */
     public void showMessage(String message) {
+        lastMessage = message;
         System.out.println(message);
     }
 
@@ -128,5 +135,14 @@ public class Ui {
         for(int i = 0; i < matchingTasks.size(); i++){
             System.out.println((i+1) + ". " + matchingTasks.get(i));
         }
+    }
+
+    /**
+     * Returns the last message displayed by the UI.
+     *
+     * @return The last message.
+     */
+    public String getLastMessage() {
+        return lastMessage;
     }
 }

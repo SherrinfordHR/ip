@@ -71,6 +71,28 @@ public class Watson {
         ui.close();
     }
 
+    /**
+     * Processes the user input and returns a response.
+     *
+     * @param input The user input command.
+     * @return The response string to be displayed in the GUI.
+     */
+    public String getResponse(String input) {
+        try {
+            Command cmd = parser.parse(input);
+            if (cmd instanceof ExitCommand) {
+                return "Bye. Hope to see you again soon!";
+            }
+            cmd.execute(Tasklist, storage, ui);
+            storage.savetask(Tasklist);
+            return ui.getLastMessage(); // 假设你在 Ui 类中添加了一个方法来获取最后的消息
+        } catch (WatsonException | NumberFormatException e) {
+            return "Error: " + e.getMessage();
+        } catch (Exception e) {
+            return "Unexpected error: " + e.getMessage();
+        }
+    }
+
     public static void main(String[] args) {
         new Watson("C:/Users/sherr/OneDrive/文档/ip/src/main/tasklist.txt").run();
     }
