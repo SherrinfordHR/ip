@@ -74,12 +74,14 @@ public class TaskList {
     }
 
     public List<Task> findTasks(String keyword) {
+        assert keyword != null: "Keyword must not be null";
         List<Task> matchingTasks = new ArrayList<>();
         for (Task task : tasks){
             if(task.getdescription().toLowerCase().contains(keyword)){
                 matchingTasks.add(task);
             }
         }
+        assert matchingTasks != null: "Matching tasks list should not be null";
         return matchingTasks;
     }
 }

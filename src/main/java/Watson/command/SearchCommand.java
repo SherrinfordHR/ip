@@ -21,6 +21,7 @@ public class SearchCommand implements Command {
      * @param keyword The search term to match against task descriptions.
      */
     public SearchCommand(String keyword) {
+        assert keyword != null && !keyword.isEmpty(): "Keyword cannot be null or empty!";
         this.keyword = keyword;
     }
 

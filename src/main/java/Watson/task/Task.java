@@ -34,6 +34,7 @@ public class Task {
      * @return Always returns null (legacy implementation).
      */
     public Task setstatus(String s) {
+        assert s.equals("0") || s.equals("1") : "Status must be '0' or '1'";
         this.status = s.equals("1");
         return null;
     }

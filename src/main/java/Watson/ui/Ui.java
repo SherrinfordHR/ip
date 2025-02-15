@@ -127,6 +127,7 @@ public class Ui {
      * @param matchingTasks list of tasks to display.
      */
     public void showTasks(List<Task> matchingTasks) {
+        assert matchingTasks != null : "Task list cannot be null";
         if (matchingTasks.isEmpty()){
             System.out.println("No match found.");
             return;

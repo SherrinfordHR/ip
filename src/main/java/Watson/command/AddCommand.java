@@ -73,6 +73,7 @@ public class AddCommand implements Command {
      */
     private void addDeadline(TaskList tasks, Ui ui) throws WatsonException {
         String[] parts = args.split("/by");
+        assert parts.length >= 2: "Deadline requires description and due date";
         if (parts.length < 2) throw new WatsonException("Deadline format invalid!");
         Task task = new Deadline(parts[0].trim(), parts[1].trim());
         tasks.add(task);
@@ -88,6 +89,7 @@ public class AddCommand implements Command {
      */
     private void addEvent(TaskList tasks, Ui ui) throws WatsonException {
         String[] parts = args.split("/from|/to");
+        assert parts.length >= 3 : "Event requires description, start, and end";
         if (parts.length < 3) throw new WatsonException("Event format invalid!");
         Task task = new Events(parts[0].trim(), parts[1].trim(), parts[2].trim());
         tasks.add(task);
