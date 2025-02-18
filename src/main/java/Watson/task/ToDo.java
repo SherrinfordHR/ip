@@ -30,7 +30,7 @@ public class ToDo extends Task {
      * @return A string like "T | 0 | Buy milk".
      */
     @Override
-    public String tofile() {
-        return "T | " + (status ? "1 | " : "0 | ") + super.tofile();
+    public String toFile() {
+        return "T | " + (status ? "1 | " : "0 | ") + super.toFile();
     }
 }

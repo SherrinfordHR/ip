@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 public class Watson {
     private final Storage storage;
-    private final TaskList Tasklist;
+    private final TaskList taskList;
     private final Parser parser;
     private final Ui ui;
 
@@ -29,18 +29,18 @@ public class Watson {
     public Watson(String filepath) {
         this.ui = new Ui();
         this.storage = new Storage(filepath);
-        this.Tasklist = new TaskList();
+        this.taskList = new TaskList();
         this.parser = new Parser();
-        loadtask();
+        loadTask();
     }
 
     /**
      * Loads tasks from the storage file into the task list.
      * Displays an error message if loading fails.
      */
-    private void loadtask() {
+    private void loadTask() {
         try {
-            Tasklist.loadTasks(storage.load());
+            taskList.loadTasks(storage.load());
         } catch (IOException e) {
             ui.showError("Loading tasks: " + e.getMessage());
         }
@@ -58,8 +58,8 @@ public class Watson {
                 String command = ui.readCommand();
                 Command cmd = parser.parse(command);
                 if (cmd instanceof ExitCommand) break;
-                cmd.execute(Tasklist, storage, ui);
-                storage.savetask(Tasklist);
+                cmd.execute(taskList, storage, ui);
+                storage.saveTask(taskList);
             } catch (WatsonException | NumberFormatException e) {
                 ui.showError(e.getMessage());
             } catch (Exception e) {
@@ -83,9 +83,9 @@ public class Watson {
             if (cmd instanceof ExitCommand) {
                 return "Bye. Hope to see you again soon!";
             }
-            cmd.execute(Tasklist, storage, ui);
-            storage.savetask(Tasklist);
-            return ui.getLastMessage(); // 假设你在 Ui 类中添加了一个方法来获取最后的消息
+            cmd.execute(taskList, storage, ui);
+            storage.saveTask(taskList);
+            return ui.getLastMessage();
         } catch (WatsonException | NumberFormatException e) {
             return "Error: " + e.getMessage();
         } catch (Exception e) {

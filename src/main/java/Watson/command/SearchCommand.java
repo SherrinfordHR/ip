@@ -33,7 +33,7 @@ public class SearchCommand implements Command {
      * @throws WatsonException If an error occurs during task processing (currently unused but retained for interface consistency).
      */
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui) throws WatsonException {
+    public void execute(TaskList tasks, Storage storage, Ui ui) {
         List<Task> matchingTasks = tasks.findTasks(keyword);
         ui.showTasks(matchingTasks);
     }

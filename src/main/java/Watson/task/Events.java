@@ -10,8 +10,8 @@ import java.time.format.DateTimeFormatter;
 public class Events extends Task {
     private final String from;
     private final String to;
-    private LocalDateTime fromdate;
-    private LocalDateTime todate;
+    private LocalDateTime from_date;
+    private LocalDateTime to_date;
 
     /**
      * Constructs an Events task with description, start time, and end time.
@@ -27,16 +27,15 @@ public class Events extends Task {
         this.to = to;
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
-            this.fromdate = LocalDateTime.parse(from, formatter);
+            this.from_date = LocalDateTime.parse(from, formatter);
         } catch (DateTimeException e) {
-            this.fromdate = null;
+            this.from_date = null;
         }
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
-            this.todate = LocalDateTime.parse(to, formatter); // Changed from 'from' to 'to'
-            this.todate = LocalDateTime.parse(to, formatter);
+            this.to_date = LocalDateTime.parse(to, formatter);
         } catch (DateTimeException e) {
-            this.todate = null;
+            this.to_date = null;
         }
     }
 
@@ -50,19 +49,19 @@ public class Events extends Task {
     public String toString() {
         String fromtoString;
         String totoString;
-        if (fromdate != null) {
+        if (from_date != null) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
-            fromtoString = fromdate.format(formatter);
+            fromtoString = from_date.format(formatter);
         } else {
             fromtoString = this.from;
         }
-        if (todate != null) {
+        if (to_date != null) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
-            totoString = todate.format(formatter);
+            totoString = to_date.format(formatter);
         } else {
             totoString = this.to;
         }
-        return "[D]" + super.toString() + " (from: " + fromtoString + " to: " + totoString + ")";
+        return "[E]" + super.toString() + " (from: " + fromtoString + " to: " + totoString + ")";
     }
 
     /**
@@ -71,7 +70,7 @@ public class Events extends Task {
      * @return A string like "E | 0 | Team meeting | 3/12/2023 0900 | 3/12/2023 1700".
      */
     @Override
-    public String tofile() {
-        return "E | " + (status ? "1 | " : "0 | ") + super.tofile() + " | " + this.from + " | " + this.to;
+    public String toFile() {
+        return "E | " + (status ? "1 | " : "0 | ") + super.toFile() + " | " + this.from + " | " + this.to;
     }
 }

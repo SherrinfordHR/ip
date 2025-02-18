@@ -26,6 +26,9 @@ public class Parser {
                 return new ListCommand();
             case "mark":
             case "unmark":
+                if (parts.length < 2 || parts[1].isBlank()) {
+                    throw new WatsonException("Task number missing!");
+                }
                 return new MarkCommand(action, parts[1]);
             case "delete":
                 return new DeleteCommand(parts[1]);

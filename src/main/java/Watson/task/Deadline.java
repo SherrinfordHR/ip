@@ -52,7 +52,7 @@ public class Deadline extends Task {
      * @return A string like "D | 1 | Submit report | 2/12/2023 1800".
      */
     @Override
-    public String tofile() {
-        return "D | " + (status ? "1 | " : "0 | ") + super.tofile() + " | " + this.due;
+    public String toFile() {
+        return "D | " + (status ? "1 | " : "0 | ") + super.toFile() + " | " + this.due;
     }
 }

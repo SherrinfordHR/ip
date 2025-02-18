@@ -71,19 +71,19 @@ public class Storage {
     // Private helper methods (no Javadoc needed for brevity)
     private Task parseTodo(String[] parts) {
         ToDo todo = new ToDo(parts[2]);
-        todo.setstatus(parts[1]);
+        todo.setStatus(parts[1]);
         return todo;
     }
 
     private Task parseDeadline(String[] parts) {
         Deadline deadline = new Deadline(parts[2], parts[3]);
-        deadline.setstatus(parts[1]);
+        deadline.setStatus(parts[1]);
         return deadline;
     }
 
     private Task parseEvent(String[] parts) {
         Events event = new Events(parts[2], parts[3], parts[4]);
-        event.setstatus(parts[1]);
+        event.setStatus(parts[1]);
         return event;
     }
 
@@ -93,10 +93,10 @@ public class Storage {
      * @param tasks The task list to be saved.
      * @throws IOException If an I/O error occurs while writing to the file.
      */
-    public void savetask(TaskList tasks) throws IOException {
+    public void saveTask(TaskList tasks) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))) {
             for (Task task : tasks.getAll()) {
-                writer.write(task.tofile());
+                writer.write(task.toFile());
                 writer.newLine();
             }
         }

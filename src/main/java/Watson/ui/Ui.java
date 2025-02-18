@@ -89,7 +89,7 @@ public class Ui {
      * @param task The task whose status was updated.
      */
     public void showMarkResult(Task task) {
-        lastMessage = "Status updated:\n  " + task.getstatus() + " " + task;
+        lastMessage = "Status updated:\n  " + task.getStatus() + " " + task;
         System.out.println(lastMessage);
     }
 

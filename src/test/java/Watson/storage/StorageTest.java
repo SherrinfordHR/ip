@@ -4,7 +4,7 @@ package Watson.storage;
 import Watson.task.*;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
-import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StorageTest {
@@ -19,7 +19,7 @@ class StorageTest {
         original.add(new Deadline("Return book", "2/12/2023 1800"));
 
         // Test save/load cycle
-        storage.savetask(original);
+        storage.saveTask(original);
         TaskList loaded = new TaskList();
         loaded.loadTasks(storage.load());
 

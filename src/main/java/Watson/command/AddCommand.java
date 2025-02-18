@@ -47,6 +47,8 @@ public class AddCommand implements Command {
         case "event":
             addEvent(tasks, ui);
             break;
+        default:
+            throw new WatsonException("Invalid task type: " + type);
         }
     }
 
@@ -73,7 +75,12 @@ public class AddCommand implements Command {
      */
     private void addDeadline(TaskList tasks, Ui ui) throws WatsonException {
         String[] parts = args.split("/by");
-        if (parts.length < 2) throw new WatsonException("Deadline format invalid!");
+        if (parts.length < 2) {
+            throw new WatsonException("Deadline format invalid!");
+        }
+        if (parts[0].trim().isEmpty() || parts[1].trim().isEmpty()) {
+            throw new WatsonException("Deadline description or time is empty!");
+        }
         Task task = new Deadline(parts[0].trim(), parts[1].trim());
         tasks.add(task);
         ui.showTaskAdded(task, tasks.size());
@@ -88,7 +95,12 @@ public class AddCommand implements Command {
      */
     private void addEvent(TaskList tasks, Ui ui) throws WatsonException {
         String[] parts = args.split("/from|/to");
-        if (parts.length < 3) throw new WatsonException("Event format invalid!");
+        if (parts.length < 3) {
+            throw new WatsonException("Event format invalid!");
+        }
+        if (parts[0].trim().isEmpty()) {
+            throw new WatsonException("Event description is empty!");
+        }
         Task task = new Events(parts[0].trim(), parts[1].trim(), parts[2].trim());
         tasks.add(task);
         ui.showTaskAdded(task, tasks.size());

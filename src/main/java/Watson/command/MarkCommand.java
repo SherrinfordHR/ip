@@ -38,7 +38,7 @@ public class MarkCommand implements Command {
         try {
             int index = Integer.parseInt(indexStr) - 1;
             Task task = tasks.get(index);
-            String feedback = task.updatestatus(action);
+            String feedback = task.updateStatus(action);
             ui.showMessage(feedback);
             ui.showMarkResult(task);
         } catch (IndexOutOfBoundsException e) {

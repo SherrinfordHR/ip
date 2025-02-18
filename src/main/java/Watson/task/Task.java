@@ -22,7 +22,7 @@ public class Task {
      *
      * @return Formatted status string.
      */
-    public String getstatus() {
+    public String getStatus() {
         return status ? "[X]" : "[ ]";
     }
 
@@ -31,11 +31,9 @@ public class Task {
      * Note: This method returns null and is intended for loading tasks from storage.
      *
      * @param s The status string ("1" or "0").
-     * @return Always returns null (legacy implementation).
      */
-    public Task setstatus(String s) {
+    public void setStatus(String s) {
         this.status = s.equals("1");
-        return null;
     }
 
     /**
@@ -44,7 +42,7 @@ public class Task {
      * @param command The action to perform ("mark" or "unmark").
      * @return Feedback message (e.g., "Nice! I've marked this task as done:").
      */
-    public String updatestatus(String command) {
+    public String updateStatus(String command) {
         if (command.equals("unmark")) {
             this.status = false;
             return "OK, I've marked this task as not done yet:";
@@ -62,7 +60,7 @@ public class Task {
      */
     @Override
     public String toString() {
-        return getstatus() + " " + description;
+        return getStatus() + " " + description;
     }
 
     /**
@@ -70,7 +68,7 @@ public class Task {
      *
      * @return The task description (e.g., "Read book").
      */
-    public String tofile() {
+    public String toFile() {
         return description;
     }
 
@@ -79,7 +77,7 @@ public class Task {
      *
      * @return The task description (e.g., "Read book").
      */
-    public String getdescription() {
+    public String getDescription() {
         return description;
     }
 }
