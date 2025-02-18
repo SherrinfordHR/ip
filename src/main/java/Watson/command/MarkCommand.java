@@ -37,6 +37,7 @@ public class MarkCommand implements Command {
     public void execute(TaskList tasks, Storage storage, Ui ui) throws WatsonException {
         try {
             int index = Integer.parseInt(indexStr) - 1;
+            assert index >= 0 && index < tasks.size() : "Invalid task index";
             Task task = tasks.get(index);
             String feedback = task.updateStatus(action);
             ui.showMessage(feedback);

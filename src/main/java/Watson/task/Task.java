@@ -33,6 +33,7 @@ public class Task {
      * @param s The status string ("1" or "0").
      */
     public void setStatus(String s) {
+        assert s.equals("0") || s.equals("1") : "Status must be '0' or '1'";
         this.status = s.equals("1");
     }
 
