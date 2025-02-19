@@ -70,20 +70,48 @@ public class Storage {
 
     // Private helper methods (no Javadoc needed for brevity)
     private Task parseTodo(String[] parts) {
-        ToDo todo = new ToDo(parts[2]);
+        int descIndex = 3;
+        Priority priority = Priority.MEDIUM;
+        if (parts.length > 3) {
+            priority = Priority.valueOf(parts[2]);
+            descIndex = 3;
+        } else {
+            descIndex = 2;
+        }
+        ToDo todo = new ToDo(parts[descIndex]);
         todo.setStatus(parts[1]);
+        todo.setPriority(priority);
         return todo;
     }
 
+
     private Task parseDeadline(String[] parts) {
-        Deadline deadline = new Deadline(parts[2], parts[3]);
+        int descIndex = 3;
+        Priority priority = Priority.MEDIUM;
+        if (parts.length > 4) {
+            priority = Priority.valueOf(parts[2]);
+            descIndex = 3;
+        } else {
+            descIndex = 2;
+        }
+        Deadline deadline = new Deadline(parts[descIndex], parts[descIndex + 1]);
         deadline.setStatus(parts[1]);
+        deadline.setPriority(priority);
         return deadline;
     }
 
     private Task parseEvent(String[] parts) {
-        Events event = new Events(parts[2], parts[3], parts[4]);
+        int descIndex = 3;
+        Priority priority = Priority.MEDIUM;
+        if (parts.length > 5) {
+            priority = Priority.valueOf(parts[2]);
+            descIndex = 3;
+        } else {
+            descIndex = 2;
+        }
+        Events event = new Events(parts[descIndex], parts[descIndex + 1], parts[descIndex + 2]);
         event.setStatus(parts[1]);
+        event.setPriority(priority);
         return event;
     }
 

@@ -71,6 +71,6 @@ public class Events extends Task {
      */
     @Override
     public String toFile() {
-        return "E | " + (status ? "1 | " : "0 | ") + super.toFile() + " | " + this.from + " | " + this.to;
+        return "E | " + (status ? "1 | " : "0 | ") + priority + " | " + super.toFile() + " | " + this.from + " | " + this.to;
     }
 }

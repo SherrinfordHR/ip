@@ -2,6 +2,7 @@ package Watson.parser;
 
 import Watson.command.*;
 import Watson.exception.WatsonException;
+import Watson.task.Priority;
 
 /**
  * Parses user input into executable commands.
@@ -38,6 +39,20 @@ public class Parser {
                 return new AddCommand(action, parts.length > 1 ? parts[1] : "");
             case "find":
                 return new SearchCommand(parts[1]);
+            case "priority":
+                if (parts.length < 2) throw new WatsonException("Priority command requires task number and priority level.");
+                String[] priorityParts = parts[1].split("\\s+", 2);
+                if (priorityParts.length != 2) throw new WatsonException("Format: priority <task#> <HIGH|MEDIUM|LOW>");
+
+                try {
+                    int taskNum = Integer.parseInt(priorityParts[0]);
+                    Priority priority = Priority.valueOf(priorityParts[1].toUpperCase());
+                    return new PriorityCommand(taskNum, priority);
+                } catch (NumberFormatException e) {
+                    throw new WatsonException("Invalid task number.");
+                } catch (IllegalArgumentException e) {
+                    throw new WatsonException("Invalid priority. Use HIGH, MEDIUM, or LOW.");
+                }
             default:
                 throw new WatsonException("OOPS!!! I don't know what that means.");
         }

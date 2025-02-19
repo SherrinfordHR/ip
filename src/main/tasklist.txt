@@ -1,2 +1,0 @@
-T | 0 | read
-D | 0 | finish work | 11/2/2000 1159

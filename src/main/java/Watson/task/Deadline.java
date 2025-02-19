@@ -53,6 +53,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toFile() {
-        return "D | " + (status ? "1 | " : "0 | ") + super.toFile() + " | " + this.due;
+        return "D | " + (status ? "1 | " : "0 | ") + priority + " | " + super.toFile() + " | " + this.due;
     }
 }

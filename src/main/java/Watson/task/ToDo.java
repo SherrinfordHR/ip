@@ -31,6 +31,6 @@ public class ToDo extends Task {
      */
     @Override
     public String toFile() {
-        return "T | " + (status ? "1 | " : "0 | ") + super.toFile();
+        return "T | " + (status ? "1 | " : "0 | ") + priority + " | " + super.toFile();
     }
 }

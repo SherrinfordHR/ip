@@ -6,6 +6,7 @@ package Watson.task;
 public class Task {
     private final String description;
     protected boolean status;
+    protected Priority priority = Priority.MEDIUM;
 
     /**
      * Constructs a Task with a description. Initial status is set to "not done".
@@ -15,6 +16,14 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.status = false;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public Priority getPriority() {
+        return priority;
     }
 
     /**
@@ -61,7 +70,7 @@ public class Task {
      */
     @Override
     public String toString() {
-        return getStatus() + " " + description;
+        return getStatus() + " [" + priority + "] " + description;
     }
 
     /**
