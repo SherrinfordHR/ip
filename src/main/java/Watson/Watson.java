@@ -94,6 +94,6 @@ public class Watson {
     }
 
     public static void main(String[] args) {
-        new Watson("C:/Users/sherr/OneDrive/文档/ip/src/main/tasklist.txt").run();
+        new Watson("./data/tasklist.txt").run();
     }
 }

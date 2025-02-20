@@ -12,7 +12,7 @@ import javafx.stage.Stage;
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
-    private String filepath = "C:/Users/sherr/OneDrive/文档/ip/src/main/tasklist.txt";
+    private String filepath = "./data/tasklist.txt";
     private Watson watson = new Watson(filepath);
 
     @Override
